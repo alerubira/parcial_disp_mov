@@ -19,6 +19,7 @@ import android.view.ViewGroup;
 import com.principal.parcialdispmov.R;
 import com.principal.parcialdispmov.databinding.FragmentGalleryBinding;
 import com.principal.parcialdispmov.databinding.FragmentSensorBinding;
+import com.principal.parcialdispmov.ui.mapa.MapsViewModel;
 
 
 public class SensorFragment extends Fragment {
@@ -35,7 +36,7 @@ public class SensorFragment extends Fragment {
                              @Nullable Bundle savedInstanceState) {
         binding = FragmentSensorBinding
                 .inflate(inflater, container, false);
-
+        mViewModel = ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication()).create(SensorViewModel.class);
         mViewModel.getMDatos().observe(this, new Observer<String>() {
             @Override
             public void onChanged(String s) {

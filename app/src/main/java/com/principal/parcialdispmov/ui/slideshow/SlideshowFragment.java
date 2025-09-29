@@ -1,5 +1,6 @@
 package com.principal.parcialdispmov.ui.slideshow;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +25,30 @@ public class SlideshowFragment extends Fragment {
         binding = FragmentSlideshowBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        final TextView textView = binding.textSlideshow;
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
+      //  final TextView textView = binding.textSlideshow;
+      //  slideshowViewModel.getText().observe(getViewLifecycleOwner(), textView::setText);
         return root;
+    }
+    @Override
+    public void onResume() {
+        super.onResume();
+        // Mostramos el diálogo cada vez que el fragment se vuelve visible
+        mostrarDialogoSalir();
+    }
+
+    private void mostrarDialogoSalir() {
+        new AlertDialog.Builder(requireContext())
+                .setTitle("Cerrar aplicación")
+                .setMessage("¿Seguro que quieres salir?")
+                .setPositiveButton("Sí", (dialog, which) -> {
+                    // Cierra la app completamente
+                    requireActivity().finishAffinity();
+                })
+                .setNegativeButton("Cancelar", (dialog, which) -> {
+                    // Solo cierra el diálogo
+                    dialog.dismiss();
+                })
+                .show();
     }
 
     @Override
