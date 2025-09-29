@@ -43,9 +43,10 @@ public class SensorFragment extends Fragment {
                 binding.tvMostrar.setText(s);
             }
         });
-
+       //mViewModel.activarLecturas();
        // mViewModel.accederASensores();
-        mViewModel.activarAcelerometro();
+       // mViewModel.activarAcelerometro();
+        mViewModel.activarProximidad();
         return binding.getRoot();
       //  return inflater.inflate(R.layout.fragment_sensor, container, false);
     }
@@ -60,6 +61,8 @@ public class SensorFragment extends Fragment {
     @Override
     public void onPause() {
         super.onPause();
-        mViewModel.desactivarAcelerometro();
+        //mViewModel.desactivarAcelerometro();
+        //mViewModel.desactivarLecturas();
+        mViewModel.desactivarProximidad();
     }
 }

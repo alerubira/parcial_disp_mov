@@ -26,8 +26,10 @@ public class HomeFragment extends Fragment {
         binding = FragmentHomeBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
         homeViewModel.getMText().observe(this,String ->{
-
-        mostrarDialogo(String);
+            if (String != null && !String.isEmpty()) {
+                mostrarDialogo(String);
+                homeViewModel.limpiarMutable(); // lo limpias después de usarlo
+            }
 
         });
         binding.btnIngresar.setOnClickListener(new View.OnClickListener() {

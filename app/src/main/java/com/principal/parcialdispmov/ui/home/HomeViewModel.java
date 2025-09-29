@@ -57,7 +57,12 @@ public class HomeViewModel extends ViewModel {
         }
         return false;
     }
+    public void limpiarMutable() {
+        mText.setValue("");
+    }
 }
+
+
    /* public LiveData<String> getText() {
         return mText;
     }*/

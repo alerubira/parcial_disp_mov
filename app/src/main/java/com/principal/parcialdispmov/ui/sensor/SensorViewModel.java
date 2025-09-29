@@ -50,7 +50,7 @@ public class SensorViewModel extends AndroidViewModel {
 
     }
     // Activar el acelerómetro
-    public void activarAcelerometro() {
+   /* public void activarAcelerometro() {
         manager = (SensorManager) getApplication().getSystemService(Context.SENSOR_SERVICE);
 
         if (manager != null) {
@@ -72,7 +72,7 @@ public class SensorViewModel extends AndroidViewModel {
             manager.unregisterListener(listener);
             mDatos.setValue("⏹ Lecturas desactivadas");
         }
-    }
+    }*/
 
     public void activarLecturas(){
         manager=(SensorManager) getApplication().getSystemService(Context.SENSOR_SERVICE);
@@ -83,6 +83,19 @@ public class SensorViewModel extends AndroidViewModel {
 
     public void desactivarLecturas(){
         manager.unregisterListener(maneja);
+    }
+    public void activarProximidad(){
+        manager=(SensorManager) getApplication().getSystemService(Context.SENSOR_SERVICE);
+        sensores=manager.getSensorList(Sensor.TYPE_PROXIMITY);
+        maneja=new ManejaSensores();
+        manager.registerListener(maneja,sensores.get(0),SensorManager.SENSOR_DELAY_GAME);
+    }
+
+    public void desactivarProximidad(){
+        if (manager != null && maneja != null) {
+            manager.unregisterListener(maneja);
+        }
+      //  manager.unregisterListener(maneja);
     }
 
     private class ManejaSensores implements SensorEventListener {
@@ -96,10 +109,12 @@ public class SensorViewModel extends AndroidViewModel {
         @Override
         public void onSensorChanged(SensorEvent sensorEvent) {
 
-            float x=sensorEvent.values[0];
+           /* float x=sensorEvent.values[0];
             float y=sensorEvent.values[1];
             float z=sensorEvent.values[2];
-            mDatos.setValue("x: "+x*10+" y: "+y*10+" z:"+z*10);
+            mDatos.setValue("x: "+x*10+" y: "+y*10+" z:"+z*10);*/
+            float distancia = sensorEvent.values[0]; // distancia en cm proximidadtrae un solo valor
+            mDatos.setValue("Distancia: " + distancia + " cm");
         }
     }
 }
