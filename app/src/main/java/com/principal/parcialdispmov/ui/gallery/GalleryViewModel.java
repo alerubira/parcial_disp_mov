@@ -33,7 +33,6 @@ public class GalleryViewModel extends ViewModel {
     public void buscarProductos(){
 
         productos= MainActivity.listaProductos;
-        Log.d("salida1", "productos");
         productos.sort(Comparator.comparing(Producto::getDescripcion, String.CASE_INSENSITIVE_ORDER));
 
         listaMutable.setValue(productos);

@@ -8,19 +8,19 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.principal.parcialdispmov.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="@string/ingresar"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_gallery"
         android:name="com.principal.parcialdispmov.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/listar"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
         android:id="@+id/nav_slideshow"
         android:name="com.principal.parcialdispmov.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/salir"
         tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/mapsFragment"

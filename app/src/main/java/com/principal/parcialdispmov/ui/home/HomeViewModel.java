@@ -14,7 +14,6 @@ public class HomeViewModel extends ViewModel {
     public HomeViewModel() {
        // mText = new MutableLiveData<>();
         //mText.setValue("This is home fragment");
-
     }
     public LiveData<String> getMText()
     {
@@ -24,7 +23,7 @@ public class HomeViewModel extends ViewModel {
         }
         return mText;
     }
-    public void recibirObjeto(String codigo,String descripcion,String precio)
+    public void recibirObjeto(String descripcion,String codigo,String precio)
     {
         Double precioS;
         if (precio.isEmpty()) {

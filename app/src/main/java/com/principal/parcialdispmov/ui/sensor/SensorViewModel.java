@@ -25,6 +25,8 @@ public class SensorViewModel extends AndroidViewModel {
     private SensorManager manager;
     private List<Sensor> sensores;
     private ManejaSensores maneja;
+    private Sensor acelerometro;
+    private ManejaSensores listener;
     public SensorViewModel(@NonNull Application application) {
         super(application);
     }
@@ -46,6 +48,30 @@ public class SensorViewModel extends AndroidViewModel {
         mDatos.setValue(cadena.toString());
 
 
+    }
+    // Activar el acelerómetro
+    public void activarAcelerometro() {
+        manager = (SensorManager) getApplication().getSystemService(Context.SENSOR_SERVICE);
+
+        if (manager != null) {
+            List<Sensor> sensores = manager.getSensorList(Sensor.TYPE_ACCELEROMETER);
+            if (!sensores.isEmpty()) {
+                acelerometro = sensores.get(0);
+                listener = new ManejaSensores();
+                manager.registerListener(listener, acelerometro, SensorManager.SENSOR_DELAY_NORMAL);
+                mDatos.setValue("✅ Acelerómetro activado");
+            } else {
+                mDatos.setValue("⚠️ No se encontró acelerómetro en el dispositivo");
+            }
+        }
+    }
+
+    // Desactivar el acelerómetro
+    public void desactivarAcelerometro() {
+        if (manager != null && listener != null) {
+            manager.unregisterListener(listener);
+            mDatos.setValue("⏹ Lecturas desactivadas");
+        }
     }
 
     public void activarLecturas(){
@@ -73,7 +99,7 @@ public class SensorViewModel extends AndroidViewModel {
             float x=sensorEvent.values[0];
             float y=sensorEvent.values[1];
             float z=sensorEvent.values[2];
-            mDatos.setValue("x: "+x+" y: "+y+" z:"+z);
+            mDatos.setValue("x: "+x*10+" y: "+y*10+" z:"+z*10);
         }
     }
 }

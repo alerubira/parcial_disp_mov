@@ -44,7 +44,8 @@ public class SensorFragment extends Fragment {
             }
         });
 
-        mViewModel.accederASensores();
+       // mViewModel.accederASensores();
+        mViewModel.activarAcelerometro();
         return binding.getRoot();
       //  return inflater.inflate(R.layout.fragment_sensor, container, false);
     }
@@ -56,4 +57,9 @@ public class SensorFragment extends Fragment {
         // TODO: Use the ViewModel
     }
 
+    @Override
+    public void onPause() {
+        super.onPause();
+        mViewModel.desactivarAcelerometro();
+    }
 }
